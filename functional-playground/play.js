@@ -1,4 +1,4 @@
-const {forEach, every, some, unary, once, memoized, map, reduce, curry} = require('../lib/es6-functional')
+const {forEach, every, some, unary, once, memoized, map, reduce, curry, compose} = require('../lib/es6-functional')
 forEach([1, 2, 3], console.log)
 
 forEach([1,2,3], (res)=>{console.log(2*res)})
@@ -46,5 +46,22 @@ const loggerHelper = (mode, initialMessage, errorMessage, lineNo) => {
         throw "wrong mode"
     }
 }
+
+const loggerCurried = curry(loggerHelper)
+
+loggerCurried('error')('Error at stat.js')('invalid arguments passed')(21)
+
+let number = compose(Math.round, parseFloat);
+
+let logNumber = compose(console.log, number);
+
+logNumber(3.56);
+
+// 计算字符串中单词的数量
+let splitIntoSpaces = (str) => str.split(" ");
+let count = (arr) => arr.length;
+const countWords = compose(count, splitIntoSpaces)
+
+logNumber(countWords("hello world"));
 
 
