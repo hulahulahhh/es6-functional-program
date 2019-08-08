@@ -1,4 +1,4 @@
-const {forEach, every, some, unary, once, memoized, map, reduce, curry, compose} = require('../lib/es6-functional')
+const {forEach, every, some, unary, once, memoized, map, reduce, curry, compose, deepCopy} = require('../lib/es6-functional')
 forEach([1, 2, 3], console.log)
 
 forEach([1,2,3], (res)=>{console.log(2*res)})
@@ -63,5 +63,21 @@ let count = (arr) => arr.length;
 const countWords = compose(count, splitIntoSpaces)
 
 logNumber(countWords("hello world"));
+
+let obj1 = {
+    name: 'sq',
+    id: {
+        count: 1
+    }
+}
+
+let obj2 = deepCopy(obj1)
+
+obj2.id.count = 2;
+
+console.log(obj1);
+console.log(obj2);
+
+
 
 
